@@ -1,25 +1,34 @@
+import { Map, type MapMarker } from "@/components/ui/map";
+
 interface MapPanelProps {
   className?: string;
+  markers?: MapMarker[];
+  center?: [number, number];
+  zoom?: number;
+  height?: string;
 }
 
 /**
- * MapPanel - Placeholder component for future MapCN integration
+ * MapPanel - Interactive map visualization using MapLibre GL
  * 
- * To use MapCN, install with:
- * npx shadcn@latest add https://mapcn.dev/maps/map.json
- * 
- * Then import and use the Map component from mapcn
+ * Displays container/truck locations on an interactive map.
+ * Defaults to a view of the Netherlands (Eindhoven area).
  */
-export function MapPanel({ className }: MapPanelProps) {
+export function MapPanel({ 
+  className, 
+  markers = [],
+  center = [5.4697, 51.4416], // Eindhoven, NL
+  zoom = 10,
+  height = "400px"
+}: MapPanelProps) {
   return (
-    <div className={className}>
-      <div className="border border-border rounded-lg p-8 bg-secondary/20 flex items-center justify-center min-h-[400px]">
-        <p className="text-muted-foreground text-center">
-          Map visualization will be available here.
-          <br />
-          <span className="text-sm">MapCN integration pending.</span>
-        </p>
-      </div>
+    <div className={`map-container ${className ?? ""}`} style={{ height }}>
+      <Map 
+        center={center}
+        zoom={zoom}
+        markers={markers}
+        className="w-full h-full"
+      />
     </div>
   );
 }

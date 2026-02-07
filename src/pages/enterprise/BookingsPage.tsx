@@ -38,22 +38,11 @@ export default function BookingsPage() {
   };
 
   return (
-    <LayoutShell showSidebar={false}>
-      <div className="max-w-3xl mx-auto space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <button
-              onClick={() => navigate("/enterprise")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors mb-3 inline-block"
-            >
-              Back to containers
-            </button>
-            <h1 className="text-2xl font-semibold text-foreground">My Bookings</h1>
-            <p className="text-muted-foreground mt-1">Upcoming scheduled pickup appointments</p>
-          </div>
-          <Button variant="outline" onClick={() => navigate("/enterprise/history")}>
-            View History
-          </Button>
+    <LayoutShell showSidebar={true} role="CARRIER">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-semibold text-foreground">My Bookings</h1>
+          <p className="text-muted-foreground mt-1">Upcoming scheduled pickup appointments</p>
         </div>
 
         {isLoading ? (

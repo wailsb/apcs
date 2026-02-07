@@ -67,8 +67,8 @@ export default function AppointmentPage() {
   const qrFilename = booking ? `portly-booking-${booking.bookingId}.png` : "booking.png";
 
   return (
-    <LayoutShell showSidebar={false}>
-      <div className="max-w-5xl mx-auto">
+    <LayoutShell showSidebar={true} role="CARRIER">
+      <div className="space-y-6">
         <div className="mb-6">
           <button
             onClick={() => navigate("/enterprise")}

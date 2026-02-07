@@ -63,6 +63,19 @@ export type BookingStatus =
 
 export type VisitPurpose = "PICKUP" | "DELIVERY" | "INSPECTION" | "MAINTENANCE";
 
+// UI-friendly booking type used by enterprise pages
+export interface Booking {
+  bookingId: string;
+  containerId: string;
+  date: string;
+  time: string;
+  status: string;
+  enterprise: string;
+  createdAt: string;
+  scannedAt?: string;
+  accessToken?: string;
+}
+
 export interface ContainerItem {
   id: string;
   date: string;

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { LayoutShell } from "@/components/LayoutShell";
-import { KpiTile } from "@/components/KpiTile";
+import { StatCard, StatCardGrid } from "@/components/StatCard";
 import { statsService, AdminStats, RecentActivity } from "@/services/stats.service";
 import { toast } from "@/hooks/use-toast";
+import { Building2, Users, Box, Calendar, CheckCircle, XCircle } from "lucide-react";
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState<AdminStats | null>(null);
@@ -78,33 +79,50 @@ export default function AdminDashboardPage() {
           <p className="text-muted-foreground">Overview of platform statistics</p>
         </div>
 
-        {/* KPI Tiles Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <KpiTile
+        {/* KPI Stats Grid */}
+        <StatCardGrid>
+          <StatCard
             title="Total Enterprises"
             value={stats?.totalEnterprises ?? 0}
+            icon={Building2}
+            variant="primary"
+            delay={0}
           />
-          <KpiTile
+          <StatCard
             title="Total Managers"
             value={stats?.totalManagers ?? 0}
+            icon={Users}
+            delay={100}
           />
-          <KpiTile
+          <StatCard
             title="Total Containers"
             value={stats?.totalContainers ?? 0}
+            icon={Box}
+            delay={200}
           />
-          <KpiTile
+          <StatCard
             title="Appointments Scheduled"
             value={stats?.appointmentsScheduled ?? 0}
+            icon={Calendar}
+            delay={300}
           />
-          <KpiTile
+        </StatCardGrid>
+
+        {/* Status Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <StatCard
             title="Arrived Today"
             value={stats?.arrivedCount ?? 0}
-            valueClassName="text-status-arrived"
+            icon={CheckCircle}
+            variant="success"
+            delay={400}
           />
-          <KpiTile
+          <StatCard
             title="Not Arrived Today"
             value={stats?.notArrivedCount ?? 0}
-            valueClassName="text-status-not-arrived"
+            icon={XCircle}
+            variant="danger"
+            delay={500}
           />
         </div>
 

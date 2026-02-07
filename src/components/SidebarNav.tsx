@@ -26,6 +26,12 @@ const managerNavItems: NavItem[] = [
   { label: "Scan QR", to: "/manager/scan", icon: dashboardIcon },
 ];
 
+const enterpriseNavItems: NavItem[] = [
+  { label: "Dashboard", to: "/enterprise", icon: dashboardIcon },
+  { label: "My Bookings", to: "/enterprise/bookings", icon: enterpriseIcon },
+  { label: "History", to: "/enterprise/history", icon: adminIcon },
+];
+
 interface SidebarNavProps {
   role: Role;
   isCollapsed: boolean;
@@ -34,8 +40,39 @@ interface SidebarNavProps {
 
 export function SidebarNav({ role, isCollapsed, onToggleCollapse }: SidebarNavProps) {
   const location = useLocation();
-  const items = role === "ADMIN" ? adminNavItems : managerNavItems;
-  const roleLabel = role === "ADMIN" ? "Admin" : "Manager";
+  
+  const getNavItems = () => {
+    switch (role) {
+      case "ADMIN":
+        return adminNavItems;
+      case "MANAGER":
+      case "TERMINAL_OPERATOR":
+        return managerNavItems;
+      case "ENTERPRISE":
+      case "CARRIER":
+        return enterpriseNavItems;
+      default:
+        return enterpriseNavItems;
+    }
+  };
+  
+  const getRoleLabel = () => {
+    switch (role) {
+      case "ADMIN":
+        return "Admin";
+      case "MANAGER":
+      case "TERMINAL_OPERATOR":
+        return "Manager";
+      case "ENTERPRISE":
+      case "CARRIER":
+        return "Carrier";
+      default:
+        return "User";
+    }
+  };
+  
+  const items = getNavItems();
+  const roleLabel = getRoleLabel();
 
   return (
     <div className="ml-4 my-4 flex flex-col sticky top-4 self-start z-10">

@@ -1,9 +1,9 @@
 /* ========================================
-   GLASS DESIGN SYSTEM - Liquid Glass Theme
+   CLEAN DESIGN SYSTEM - Modern Card Theme
    ========================================
    Primary: #040CAD (hsl 231 95% 35%)
    Secondary/Accent: #576AFF (hsl 231 100% 67%)
-   Background: Pure white
+   Background: Pure white / Slate grays
    ======================================== */
 
 /* ========================================
@@ -32,6 +32,19 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Counter animation for stat numbers */
+@keyframes counter-pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Pulse animation for live indicators */
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .list-item-animate {
@@ -72,190 +85,189 @@
 .section-animate:nth-child(5) { animation-delay: 400ms; }
 .section-animate:nth-child(6) { animation-delay: 500ms; }
 
-/* CSS Variables */
-:root {
-  /* Secondary tint - #576AFF */
-  --glass-tint: 87, 106, 255;
-  --glass-border: rgba(87, 106, 255, 0.18);
-  --glass-surface: rgba(87, 106, 255, 0.08);
-  --glass-surface-strong: rgba(87, 106, 255, 0.12);
-  --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-
-  /* Primary tint - #040CAD */
-  --glass-primary-tint: 4, 12, 173;
-  --glass-primary-border: rgba(4, 12, 173, 0.18);
-  --glass-primary-surface: rgba(4, 12, 173, 0.06);
-  --glass-primary-surface-strong: rgba(4, 12, 173, 0.10);
-
-  /* Status glass tints */
-  --glass-arrived-bg: rgba(16, 185, 129, 0.12);
-  --glass-arrived-border: rgba(16, 185, 129, 0.25);
-  --glass-arrived-text: rgb(16, 158, 110);
-
-  --glass-not-arrived-bg: rgba(239, 68, 68, 0.12);
-  --glass-not-arrived-border: rgba(239, 68, 68, 0.25);
-  --glass-not-arrived-text: rgb(220, 38, 38);
-
-  --glass-scheduled-bg: rgba(87, 106, 255, 0.12);
-  --glass-scheduled-border: rgba(87, 106, 255, 0.25);
-  --glass-scheduled-text: rgb(87, 106, 255);
+/* Counter pop animation for stats */
+.stat-counter {
+  animation: counter-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Secondary tint glass (sidebar, header) */
+.stat-counter:nth-child(1) { animation-delay: 0ms; }
+.stat-counter:nth-child(2) { animation-delay: 100ms; }
+.stat-counter:nth-child(3) { animation-delay: 200ms; }
+.stat-counter:nth-child(4) { animation-delay: 300ms; }
+
+/* Live pulse indicator */
+.pulse-live {
+  animation: pulse-live 2s ease-in-out infinite;
+}
+
+/* CSS Variables - Clean Design System */
+:root {
+  /* Primary colors */
+  --primary: 231 95% 35%;
+  --primary-foreground: 0 0% 100%;
+  
+  /* Card surfaces - clean solid backgrounds */
+  --glass-border: hsl(214 32% 91%);
+  --glass-surface: hsl(0 0% 100%);
+  --glass-surface-strong: hsl(210 40% 98%);
+  --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --glass-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+
+  /* Primary tint surfaces */
+  --glass-primary-border: hsl(231 40% 88%);
+  --glass-primary-surface: hsl(231 50% 98%);
+  --glass-primary-surface-strong: hsl(231 45% 96%);
+
+  /* Status colors - solid backgrounds */
+  --glass-arrived-bg: hsl(160 84% 95%);
+  --glass-arrived-border: hsl(160 70% 80%);
+  --glass-arrived-text: hsl(160 84% 30%);
+
+  --glass-not-arrived-bg: hsl(0 86% 96%);
+  --glass-not-arrived-border: hsl(0 70% 85%);
+  --glass-not-arrived-text: hsl(0 72% 45%);
+
+  --glass-scheduled-bg: hsl(231 100% 97%);
+  --glass-scheduled-border: hsl(231 80% 85%);
+  --glass-scheduled-text: hsl(231 95% 45%);
+}
+
+/* Secondary tint - clean card surfaces */
 .glass {
   background: var(--glass-surface);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--glass-shadow);
 }
 
 .glass-strong {
   background: var(--glass-surface-strong);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   box-shadow: var(--glass-shadow);
 }
 
 .glass-hover:hover {
-  border-color: rgba(4, 12, 173, 0.35);
-  box-shadow: 0 0 0 3px rgba(4, 12, 173, 0.1);
+  border-color: hsl(231 70% 75%);
+  box-shadow: var(--glass-shadow-lg);
 }
 
 .glass-round {
-  border-radius: 18px;
+  border-radius: 16px;
 }
 
 .glass-panel {
   background: var(--glass-surface);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--glass-shadow);
-  border-radius: 18px;
+  border-radius: 16px;
 }
 
 .glass-card {
   background: var(--glass-surface);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--glass-shadow);
-  border-radius: 14px;
+  border-radius: 12px;
   transition: all 0.2s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(4, 12, 173, 0.3);
-  box-shadow: 0 0 0 2px rgba(4, 12, 173, 0.08), var(--glass-shadow);
+  border-color: hsl(231 60% 80%);
+  box-shadow: var(--glass-shadow-lg);
 }
 
-/* Primary tint glass (lists, content panels) */
+.glass-card-active {
+  background: var(--glass-surface);
+  border: 2px solid hsl(231 95% 50%);
+  box-shadow: 0 0 0 3px hsla(231 95% 50% / 0.15), var(--glass-shadow);
+}
+
+/* Primary tint - content panels */
 .glass-primary {
   background: var(--glass-primary-surface);
   border: 1px solid var(--glass-primary-border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--glass-shadow);
 }
 
 .glass-primary-panel {
   background: var(--glass-primary-surface);
   border: 1px solid var(--glass-primary-border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--glass-shadow);
-  border-radius: 18px;
+  border-radius: 16px;
 }
 
 .glass-primary-card {
   background: var(--glass-primary-surface);
   border: 1px solid var(--glass-primary-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--glass-shadow);
-  border-radius: 14px;
+  border-radius: 12px;
   transition: all 0.2s ease;
 }
 
 .glass-primary-card:hover {
-  border-color: rgba(4, 12, 173, 0.35);
-  box-shadow: 0 0 0 2px rgba(4, 12, 173, 0.1), var(--glass-shadow);
+  border-color: hsl(231 50% 75%);
+  box-shadow: var(--glass-shadow-lg);
 }
 
-/* List item glass hover */
+/* List item hover */
 .glass-list-item {
   transition: all 0.15s ease;
   border: 1px solid transparent;
+  border-radius: 8px;
 }
 
 .glass-list-item:hover {
-  background: rgba(4, 12, 173, 0.04);
-  border-color: rgba(4, 12, 173, 0.15);
+  background: var(--glass-primary-surface);
+  border-color: var(--glass-primary-border);
 }
 
-/* Status pill glass styles */
+/* Status pill styles */
 .glass-pill-arrived {
   background: var(--glass-arrived-bg);
   border: 1px solid var(--glass-arrived-border);
   color: var(--glass-arrived-text);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .glass-pill-not-arrived {
   background: var(--glass-not-arrived-bg);
   border: 1px solid var(--glass-not-arrived-border);
   color: var(--glass-not-arrived-text);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .glass-pill-scheduled {
   background: var(--glass-scheduled-bg);
   border: 1px solid var(--glass-scheduled-border);
   color: var(--glass-scheduled-text);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .glass-pill-active {
   background: var(--glass-arrived-bg);
   border: 1px solid var(--glass-arrived-border);
   color: var(--glass-arrived-text);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .glass-pill-disabled {
   background: var(--glass-not-arrived-bg);
   border: 1px solid var(--glass-not-arrived-border);
   color: var(--glass-not-arrived-text);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Time slot glass chips */
+/* Time slot chips */
 .glass-time-slot {
   background: var(--glass-primary-surface);
   border: 1px solid var(--glass-primary-border);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px;
   transition: all 0.15s ease;
 }
 
 .glass-time-slot:hover {
-  background: rgba(4, 12, 173, 0.1);
-  border-color: rgba(4, 12, 173, 0.3);
+  background: var(--glass-primary-surface-strong);
+  border-color: hsl(231 60% 75%);
 }
 
 .glass-time-slot-selected {
-  background: rgba(87, 106, 255, 0.15);
-  border: 1px solid rgba(87, 106, 255, 0.4);
-  color: rgb(87, 106, 255);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: hsl(231 100% 97%);
+  border: 2px solid hsl(231 95% 55%);
+  color: hsl(231 95% 45%);
+  font-weight: 500;
 }
 
 /* QR Scanner frame corners */
@@ -263,7 +275,7 @@
   position: absolute;
   width: 32px;
   height: 32px;
-  border-color: rgba(87, 106, 255, 0.9);
+  border-color: hsl(231 95% 55%);
   border-style: solid;
   border-width: 0;
 }
@@ -300,44 +312,40 @@
   border-bottom-right-radius: 8px;
 }
 
-/* Glass form controls */
+/* Form controls */
 .glass-control {
-  background: rgba(87, 106, 255, 0.06) !important;
-  border: 1px solid rgba(87, 106, 255, 0.18) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: hsl(0 0% 100%) !important;
+  border: 1px solid hsl(214 32% 91%) !important;
   transition: all 0.15s ease;
 }
 
 .glass-control:focus,
 .glass-control:focus-within {
-  border-color: rgba(4, 12, 173, 0.4) !important;
-  box-shadow: 0 0 0 3px rgba(4, 12, 173, 0.12) !important;
+  border-color: hsl(231 95% 55%) !important;
+  box-shadow: 0 0 0 3px hsla(231 95% 55% / 0.15) !important;
   outline: none;
 }
 
 .glass-control:hover:not(:focus) {
-  border-color: rgba(87, 106, 255, 0.3) !important;
+  border-color: hsl(231 50% 75%) !important;
 }
 
-/* Glass section card */
+/* Section card */
 .glass-section {
-  background: var(--glass-surface-strong);
+  background: var(--glass-surface);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   box-shadow: var(--glass-shadow);
   border-radius: 16px;
 }
 
-/* Glass switch track */
+/* Switch track */
 .glass-switch[data-state="checked"] {
-  background: hsl(231, 95%, 35%) !important;
+  background: hsl(231, 95%, 45%) !important;
 }
 
 .glass-switch[data-state="unchecked"] {
-  background: rgba(87, 106, 255, 0.2) !important;
-  border: 1px solid rgba(87, 106, 255, 0.3);
+  background: hsl(214 32% 91%) !important;
+  border: 1px solid hsl(214 32% 85%);
 }
 
 /* No scroll shadows - clean scrolling */
@@ -351,11 +359,162 @@
   display: none !important;
 }
 
-/* Glass container without shadow (for scroll areas) */
+/* Container without shadow (for scroll areas) */
 .glass-primary-no-shadow {
   background: var(--glass-primary-surface);
   border: 1px solid var(--glass-primary-border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   box-shadow: none;
+}
+
+/* ========================================
+   STAT CARD STYLES
+   ======================================== */
+
+.stat-card {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+  box-shadow: var(--glass-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.stat-card-primary {
+  background: linear-gradient(135deg, hsl(231 95% 50%), hsl(231 95% 40%));
+  border: none;
+  color: white;
+}
+
+.stat-card-success {
+  background: linear-gradient(135deg, hsl(160 84% 39%), hsl(160 84% 30%));
+  border: none;
+  color: white;
+}
+
+.stat-card-warning {
+  background: linear-gradient(135deg, hsl(38 92% 50%), hsl(38 92% 40%));
+  border: none;
+  color: white;
+}
+
+.stat-card-danger {
+  background: linear-gradient(135deg, hsl(0 72% 51%), hsl(0 72% 41%));
+  border: none;
+  color: white;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: hsl(215 16% 47%);
+  margin-top: 0.5rem;
+}
+
+.stat-card-primary .stat-label,
+.stat-card-success .stat-label,
+.stat-card-warning .stat-label,
+.stat-card-danger .stat-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ========================================
+   CHART WRAPPER STYLES
+   ======================================== */
+
+.chart-wrapper {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--glass-shadow);
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.chart-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(222 47% 11%);
+}
+
+.chart-subtitle {
+  font-size: 0.75rem;
+  color: hsl(215 16% 47%);
+}
+
+/* ========================================
+   MAP CONTAINER STYLES
+   ======================================== */
+
+.map-container {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+}
+
+.map-container .maplibregl-map {
+  border-radius: 12px;
+}
+
+/* ========================================
+   DOCK NAVIGATION STYLES
+   ======================================== */
+
+.dock-nav {
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  padding: 8px 16px;
+}
+
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 12px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.dock-item:hover {
+  background: var(--glass-primary-surface);
+}
+
+.dock-item-active {
+  background: hsl(231 95% 97%);
+  color: hsl(231 95% 45%);
+}
+
+.dock-item-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+.dock-item-label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }

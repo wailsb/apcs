@@ -11,6 +11,9 @@ import {
   Settings,
   ScanLine,
   LogOut,
+  CalendarDays,
+  History,
+  ClipboardList,
   type LucideProps,
 } from "lucide-react";
 
@@ -33,7 +36,9 @@ const managerNavItems: DockNavItem[] = [
 ];
 
 const enterpriseNavItems: DockNavItem[] = [
-  { label: "Containers", to: "/enterprise", Icon: Box },
+  { label: "Dashboard", to: "/enterprise", Icon: LayoutDashboard },
+  { label: "Bookings", to: "/enterprise/bookings", Icon: CalendarDays },
+  { label: "History", to: "/enterprise/history", Icon: History },
 ];
 
 function getNavItems(role: Role): DockNavItem[] {
@@ -41,8 +46,12 @@ function getNavItems(role: Role): DockNavItem[] {
     case "ADMIN":
       return adminNavItems;
     case "MANAGER":
+    case "TERMINAL_OPERATOR":
       return managerNavItems;
     case "ENTERPRISE":
+    case "CARRIER":
+      return enterpriseNavItems;
+    default:
       return enterpriseNavItems;
   }
 }

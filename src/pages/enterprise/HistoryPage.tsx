@@ -57,18 +57,12 @@ export default function HistoryPage() {
   };
 
   return (
-    <LayoutShell showSidebar={false}>
-      <div className="max-w-3xl mx-auto space-y-6">
+    <LayoutShell showSidebar={true} role="CARRIER">
+      <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <button
-              onClick={() => navigate("/enterprise/bookings")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors mb-3 inline-block"
-            >
-              Back to bookings
-            </button>
             <h1 className="text-2xl font-semibold text-foreground">Booking History</h1>
-            <p className="text-muted-foreground mt-1">Past bookings and scan events</p>
+            <p className="text-muted-foreground mt-1">Past bookings and completed visits</p>
           </div>
           <Button variant="outline" onClick={handleExportCSV}>
             Export CSV

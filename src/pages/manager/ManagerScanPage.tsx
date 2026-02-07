@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { authService } from "@/services/auth.service";
 import { QrScannerOverlay } from "@/components/QrScannerOverlay";
 import { Button } from "@/components/ui/button";
+import { LayoutShell } from "@/components/LayoutShell";
 import { cn } from "@/lib/utils";
 
 interface BookingPayload {
@@ -191,11 +192,6 @@ export default function ManagerScanPage() {
     setIsConfirmed(true);
   };
 
-  const handleLogout = () => {
-    authService.logout();
-    navigate("/login");
-  };
-
   useEffect(() => {
     isMountedRef.current = true;
     
@@ -212,35 +208,19 @@ export default function ManagerScanPage() {
   }, [startScanner, stopScanner]);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      {/* Top Bar - Glass style, only Help and Logout */}
-      <header className="m-4 mb-0 h-14 glass glass-round flex items-center justify-end px-6 gap-3">
-        <Button variant="glass-outline" size="sm" className="rounded-full px-4">
-          Help
-        </Button>
-        <Button
-          variant="glass-outline"
-          size="sm"
-          className="rounded-full px-4 text-destructive border-destructive/30 hover:bg-destructive/10 hover:text-destructive"
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
-      </header>
+    <LayoutShell showSidebar={true} role="MANAGER">
+      <div className="space-y-6">
+        {/* Page Header */}
+        <div>
+          <h1 className="text-2xl font-semibold text-foreground">Scan QR Code</h1>
+          <p className="text-muted-foreground mt-1">
+            Position the QR code within the camera frame to verify container appointments
+          </p>
+        </div>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6">
+        {/* Camera Preview Container */}
         <div className="max-w-xl mx-auto space-y-6">
-          {/* Page Header */}
-          <div className="text-center">
-            <h1 className="text-2xl font-semibold text-foreground">Scan QR Code</h1>
-            <p className="text-muted-foreground mt-1">
-              Position the QR code within the camera frame to verify container appointments
-            </p>
-          </div>
-
-          {/* Camera Preview Container - Glass card style */}
-          <div className="w-full max-w-[520px] mx-auto">
+          <div className="w-full">
             <div
               className={cn(
                 "relative w-full aspect-[4/3] overflow-hidden glass-strong glass-round bg-black/5"
@@ -371,7 +351,7 @@ export default function ManagerScanPage() {
             )}
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </LayoutShell>
   );
 }

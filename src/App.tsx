@@ -4,9 +4,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "@/pages/LoginPage";
 import EnterprisePage from "@/pages/EnterprisePage";
+import BookingsPage from "@/pages/enterprise/BookingsPage";
+import AppointmentPage from "@/pages/enterprise/AppointmentPage";
+import HistoryPage from "@/pages/enterprise/HistoryPage";
 import AdminDashboardPage from "@/pages/admin/AdminDashboardPage";
 import AdminUsersPage from "@/pages/admin/AdminUsersPage";
 import AdminEnterpriseOwnersPage from "@/pages/admin/AdminEnterpriseOwnersPage";
+import AdminContainersPage from "@/pages/admin/AdminContainersPage";
 import AdminSettingsPage from "@/pages/admin/AdminSettingsPage";
 import AdminAuditPage from "@/pages/admin/AdminAuditPage";
 import ManagerScanPage from "@/pages/manager/ManagerScanPage";
@@ -57,6 +61,30 @@ const App = () => (
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/enterprise/bookings"
+            element={
+              <ProtectedRoute allowedRoles={["ENTERPRISE", "CARRIER"]}>
+                <BookingsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/enterprise/appointment/:containerId"
+            element={
+              <ProtectedRoute allowedRoles={["ENTERPRISE", "CARRIER"]}>
+                <AppointmentPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/enterprise/history"
+            element={
+              <ProtectedRoute allowedRoles={["ENTERPRISE", "CARRIER"]}>
+                <HistoryPage />
+              </ProtectedRoute>
+            }
+          />
           
           {/* Admin Routes */}
           <Route
@@ -84,6 +112,14 @@ const App = () => (
             element={
               <ProtectedRoute allowedRoles={["ADMIN"]}>
                 <AdminEnterpriseOwnersPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/containers"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <AdminContainersPage />
               </ProtectedRoute>
             }
           />
